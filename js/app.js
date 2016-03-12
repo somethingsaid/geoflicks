@@ -66,11 +66,16 @@ function getGeocode(location){
     })
     .done(function(result){
     	console.log(result);
-    	var geoCoordinates = [];
-    	geoCoordinates.push(result.results[0].geometry.location.lat);
-    	geoCoordinates.push(result.results[0].geometry.location.lng);
-    	console.log(location + ": " + geoCoordinates);
-    	getPhoto(geoCoordinates);
+    	if (result.results.length > 0){
+    	    var geoCoordinates = [];
+    	    geoCoordinates.push(result.results[0].geometry.location.lat);
+    	    geoCoordinates.push(result.results[0].geometry.location.lng);
+    	    console.log(location + ": " + geoCoordinates);
+    	    getPhoto(geoCoordinates);
+    	}
+    	else {
+    		console.log("no results");
+    	}
     })
     .fail(function(jqXHR, error){
     	console.log("call failed");
