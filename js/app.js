@@ -19,7 +19,7 @@ function getPhoto(coord) {
 		/* optional parameters: */
 		content_type: 1, // 1 for photos only
 		sort: "relevance", //optional
-		accuracy: 13, // range [1: 16] where 1 is world, 16 is street, 11 is around city
+		accuracy: 10, // range [1: 16] where 1 is world, 16 is street, 11 is around city
 		min_taken_date: moment().subtract(12, "months").format('YYYY-MM-DD 00:00:00'),
 		max_upload_date: moment().format('YYYY-MM-DD 00:00:00'),
 		radius: 10, // range (0: 32] km
@@ -39,10 +39,15 @@ function getPhoto(coord) {
     	$.each(result.photos.photo, function(i, photoObj)
     		// photo is an array of objects, feed index and matching object
     	{
+    		var photoDetails = {
+    			title: photoObj.title,
+    			url: photoObj.url_m,
+    			flickrPage: "https://www.flickr.com/photos/" + photoObj.owner + "/" + photoObj.id
+    		}
     		console.log(photoObj);
-    		console.log("Title: " + photoObj.title);
-    		console.log("Source URL: " + photoObj.url_m);
-    		console.log("Link to flickr: https://www.flickr.com/photos/" + photoObj.owner + "/" + photoObj.id);
+    		console.log("Title: " + photoDetails.title);
+    		console.log("Source URL: " + photoDetails.url);
+    		console.log("Link to flickr: " + photoDetails.flickrPage);
     		console.log("*******************************");
     	});
     });

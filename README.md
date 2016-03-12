@@ -23,3 +23,5 @@ Features
 * filter by hashtags
 * add progress bar for loading http://ricostacruz.com/nprogress/
 * hidden search bar to clear presentation space
+* make a random search button (with preset list of locations)
+* favicon
