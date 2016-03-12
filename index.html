@@ -9,11 +9,18 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 </head>
 <body>
-	<h1>Hello World!</h1>
+	<div class="container-fluid">
+	    <h1 class="header col-md-12">Local Pics</h1>
+	     <div class="clearfix visible-md-block"></div>
+	</div>
 	<div class="container">
-        <div class="row">
-        	<div class="col-md-12">what up?</div>
-        </div>
+		<div class="row">
+		    <form class="location-getter col-md-12">
+		    	<p>Enter a location</p>
+				<input type="text" placeholder='e.g., "Paris, France" or "1451 Broadway, New York"' name="location" size="50" autofocus required>
+				<input type="submit" value="Submit">
+		    </form>
+	    </div>
     </div>
     <!-- Sourcing jQuery and Boostrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
