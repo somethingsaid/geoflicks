@@ -1,27 +1,12 @@
-My App
+About
 ===========
-Vicarious Traveller
-take user input city/address
-return latest/popular posts from a location
-used Bootstrap
-
-Files
-------
+Retrieve public Flickr photos by location search
 
 APIs used
 ---------
-google maps
-instagram
+Google geocode
+Flickr
 
 App location
 ------------
-
-Features
---------
-* search by address, location, point of interest, geo coordinates etc.
-* filter by time period
-* filter by hashtags
-* add progress bar for loading http://ricostacruz.com/nprogress/
-* hidden search bar to clear presentation space
-* make a random search button (with preset list of locations)
-* favicon
+somethingsaid.github.io/geoflicks
