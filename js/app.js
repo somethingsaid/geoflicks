@@ -10,18 +10,25 @@ var flickrPage = 1;
 // Functions
 function showPhoto(album){
 	var albumIndex = 0;
-	
-    for(var row = 1; row < 5; row++){
-    	$("#album").append("<div class='row'>");
-    	for(var col = 1; col < 5; col++){
-    		var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'><img src='" + album[albumIndex].url + "'></a>";
-    		albumIndex += 1;
-    		$("#album").append("<div class='col-lg-3'>" + imgText + "</div>");
-    	};
-    	$("#album").append("</div>");
+	var htmlString = "";
+	while(albumIndex < album.length) {
+        for(var row = 1; row < 5; row++){
+        	if(albumIndex < album.length){
+    	        htmlString += "<div class='row'>";
+    	        for(var col = 1; col < 5; col++){
+    	        	if(albumIndex < album.length){
+    		            var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'><img src='" + album[albumIndex].url + "'></a>";
+    		            htmlString += "<div class='col-lg-3'>" + imgText + "</div>";
+    		            albumIndex += 1;
+    	            };
+    	        };
+    	    };
+    	    htmlString += "</div>";
+        };
     };
+    $("#album").append(htmlString);
     $(".loading").hide();
-    $(".success").show().css("text-align", "center");
+    $(".success").show();
 }
 
 function getPhoto(coord){
@@ -103,10 +110,20 @@ function getGeocode(location){
 // Event listeners
 $("#location-getter").submit(function(event){
 	event.preventDefault();
+	$("#album").empty();
 	$(".success").hide();
 	$(".loading").show().css("text-align", "center");
 	inputLocation = $(this).find("input[name='location']").val();
 	console.log("user entered: " + inputLocation);
 	getGeocode(inputLocation);
     });
+
+// Menu toggle
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+    $(".loading").hide();
+    $(".success").hide();
+});
+
 });
