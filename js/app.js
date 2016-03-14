@@ -1,12 +1,30 @@
 $(document).ready(function(){
 console.log("Current date: " + moment().format('YYYY-MM-DD 00:00:00'));
 console.log("6 months ago: " + moment().subtract(6, "months").format('YYYY-MM-DD 00:00:00'));
+
 // Global variables
 var inputLocation = "";
+var photoAlbum = [];
+var flickrPage = 1;
 
 // Functions
+function showPhoto(album){
+	var albumIndex = 0;
+	
+    for(var row = 1; row < 5; row++){
+    	$("#album").append("<div class='row'>");
+    	for(var col = 1; col < 5; col++){
+    		var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'><img src='" + album[albumIndex].url + "'></a>";
+    		albumIndex += 1;
+    		$("#album").append("<div class='col-lg-3'>" + imgText + "</div>");
+    	};
+    	$("#album").append("</div>");
+    };
+    $(".loading").hide();
+    $(".success").show().css("text-align", "center");
+}
 
-function getPhoto(coord) {
+function getPhoto(coord){
 	// flickr api key:
 	console.log("ready to hit flickr");
 	var parameters = {
@@ -24,7 +42,8 @@ function getPhoto(coord) {
 		max_upload_date: moment().format('YYYY-MM-DD 00:00:00'),
 		radius: 10, // range (0: 32] km
 		radius_units: "km",
-		per_page: 30, // defaults to 100, max 500 per page
+		per_page: 16, // defaults to 100, max 500 per page
+		page: flickrPage,
 		extras: "url_t, url_s, url_m, url_z"
 	};
     
@@ -35,7 +54,7 @@ function getPhoto(coord) {
     })
     .done(function(result){
     	console.log(result);
-    	//https://www.flickr.com/photos/{user-id}/{photo-id} - individual photo
+    	photoAlbum = []; // re-initialize
     	$.each(result.photos.photo, function(i, photoObj)
     		// photo is an array of objects, feed index and matching object
     	{
@@ -44,13 +63,11 @@ function getPhoto(coord) {
     			url: photoObj.url_m,
     			flickrPage: "https://www.flickr.com/photos/" + photoObj.owner + "/" + photoObj.id
     		}
-    		console.log(photoObj);
-    		console.log("Title: " + photoDetails.title);
-    		console.log("Source URL: " + photoDetails.url);
-    		console.log("Link to flickr: " + photoDetails.flickrPage);
-    		console.log("*******************************");
+    		photoAlbum.push(photoDetails);
     	});
-    });
+    	console.log(photoAlbum);
+    	showPhoto(photoAlbum);
+    })
 }
 
 function getGeocode(location){
@@ -85,8 +102,9 @@ function getGeocode(location){
 
 // Event listeners
 $("#location-getter").submit(function(event){
-	console.log("user submitted");
 	event.preventDefault();
+	$(".success").hide();
+	$(".loading").show().css("text-align", "center");
 	inputLocation = $(this).find("input[name='location']").val();
 	console.log("user entered: " + inputLocation);
 	getGeocode(inputLocation);
