@@ -18,7 +18,7 @@ function getPhoto(coord) {
 		lon : coord[1],
 		/* optional parameters: */
 		content_type: 1, // 1 for photos only
-		sort: "relevance", //optional
+		sort: "relevance", //can also be interestingness_desc, time based
 		accuracy: 10, // range [1: 16] where 1 is world, 16 is street, 11 is around city
 		min_taken_date: moment().subtract(12, "months").format('YYYY-MM-DD 00:00:00'),
 		max_upload_date: moment().format('YYYY-MM-DD 00:00:00'),
@@ -84,7 +84,8 @@ function getGeocode(location){
 
 
 // Event listeners
-$(".location-getter").submit(function(event){
+$("#location-getter").submit(function(event){
+	console.log("user submitted");
 	event.preventDefault();
 	inputLocation = $(this).find("input[name='location']").val();
 	console.log("user entered: " + inputLocation);
