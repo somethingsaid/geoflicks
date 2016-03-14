@@ -4,9 +4,9 @@ Retrieve public Flickr photos by location search
 
 APIs used
 ---------
-Google geocode
-Flickr
+*Google geocode
+*Flickr
 
 App location
 ------------
-somethingsaid.github.io/geoflicks
+https://somethingsaid.github.io/geoflicks
