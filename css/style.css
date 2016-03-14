@@ -3,6 +3,9 @@
 	z-index: 1000;
 }
 
+html, .row {
+	background-color: #e9ebed;
+}
 /* Spinner declaration */
 .loading {
 	padding-left: 1rem;
@@ -16,6 +19,11 @@
 	font-size: 2rem;
 	color: green;
 	display: none;
+}
+
+#title {
+	background-color: #2b3e50;
+	color: #ebebeb;
 }
 
 
@@ -35,14 +43,14 @@
 
 #sidebar-wrapper {
     z-index: 999;
-    padding-top: 140px;
+    padding-top: 100px;
     position: fixed;
     left: 250px;
     width: 0;
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background-color: #2b5050;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -57,6 +65,7 @@
     width: 100%;
     position: absolute;
     padding: 15px;
+    background-color: #e9ebed;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -65,7 +74,7 @@
 }
 
 label {
-	color: #ffffff;
+	color: #df691a;
 }
 
 /* media */
