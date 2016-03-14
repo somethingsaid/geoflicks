@@ -17,8 +17,12 @@ function showPhoto(album){
     	        htmlString += "<div class='row'>";
     	        for(var col = 1; col < 5; col++){
     	        	if(albumIndex < album.length){
+    	        		/*
+    		            var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'>    </a>"; // <img src='" + album[albumIndex].url + "'>
+    		            htmlString += "<div class='col-md-3' style='background-image:url(\"" + album[albumIndex].url + "\");background-size:cover;background-repeat:no-repeat;'>" + imgText + "</div>";
+    		            */
     		            var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'><img src='" + album[albumIndex].url + "'></a>";
-    		            htmlString += "<div class='col-lg-3'>" + imgText + "</div>";
+    		            htmlString += "<div class='col-md-3'>" + imgText + "</div>";
     		            albumIndex += 1;
     	            };
     	        };
@@ -28,7 +32,8 @@ function showPhoto(album){
     };
     $("#album").append(htmlString);
     $(".loading").hide();
-    $(".success").show();
+    $("#next-page").show();
+    $(".success").show().css("color", "#3cba54");
 }
 
 function getPhoto(coord){
@@ -73,7 +78,14 @@ function getPhoto(coord){
     		photoAlbum.push(photoDetails);
     	});
     	console.log(photoAlbum);
-    	showPhoto(photoAlbum);
+    	if(photoAlbum.length > 0){
+    	    showPhoto(photoAlbum);
+    	}
+    	else{
+    		$(".loading").hide();
+            $(".success").css("color", "red").show();
+            $(".fail").show();
+    	}
     })
 }
 
@@ -111,8 +123,16 @@ function getGeocode(location){
 $("#location-getter").submit(function(event){
 	event.preventDefault();
 	$("#album").empty();
+	$(".fail").hide();
 	$(".success").hide();
 	$(".loading").show().css("text-align", "center");
+	// if submitting on same criteria, show new results
+	if($(this).find("input[name='location']").val() == inputLocation){
+		flickrPage += 1;
+	}
+	else {
+		flickrPage = 1;
+	}
 	inputLocation = $(this).find("input[name='location']").val();
 	console.log("user entered: " + inputLocation);
 	getGeocode(inputLocation);
@@ -123,7 +143,7 @@ $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
     $(".loading").hide();
-    $(".success").hide();
+    $(".success").hide();    
 });
 
 });

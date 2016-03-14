@@ -8,14 +8,15 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Gentium+Book+Basic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid" id="title">
-                    <div class="col-lg-12" id="fixed-nav">
-                        <h1>GeoFlicks</h1>
+                    <div class="col-md-12" id="fixed-nav">
+                        <h1><b id="googl-orange">Geo</b>Flicks</h1>
                         <p>Find photos on Flickr by location!</p>
-                        <a href="#menu-toggle" class="btn btn-warning" id="menu-toggle">Toggle search</a>
+                        <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Toggle search</a>
                     </div>
         </div>
     </nav>
@@ -27,9 +28,11 @@
                     <label for="location">Location:</label>
                     <input type="text" class="form-control" id="location" name="location" placeholder='e.g., "Shirakawa-go", "Labuan Bajo, Komodo" or "1451 Broadway, New York"' required>
                 </div>
-                <span><button type="submit" class="btn btn-warning" style="outline: none">Submit</button></span>
+                <span><button type="submit" class="btn btn-primary" style="outline: none">Submit</button></span>
+                <span><button type="submit" class="btn btn-primary" style="outline: none" id="next-page">Show more</button></span>
                 <span class="loading"><i class="fa fa-circle-o-notch fa-spin"></i></span>
                 <span class="success"><i class="fa fa-circle-o-notch"></i></span>
+                <p class="fail">No results</p>
             </form>
         </div>
         <!-- /#sidebar-wrapper -->
