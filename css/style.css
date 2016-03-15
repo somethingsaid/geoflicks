@@ -56,7 +56,7 @@ b {
 }
 /* Main content and side-bar declarations */
 #wrapper {
-    padding-left: 0;
+    padding-left: 250px;
     padding-top: 70px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -65,7 +65,7 @@ b {
 }
 
 #wrapper.toggled {
-    padding-left: 300px;
+    padding-left: 0;
 }
 
 #sidebar-wrapper {
@@ -73,7 +73,7 @@ b {
     padding-top: 100px;
     position: fixed;
     left: 250px;
-    width: 0;
+    width: 250px;
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
@@ -85,19 +85,19 @@ b {
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 300px;
+    width: 0;
 }
 
 #page-content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 15px;
+    padding: 20px;
     background-color: #e9ebed;
 }
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -250px;
+    margin-right: 0;
 }
 
 label {
