@@ -21,8 +21,8 @@ function showPhoto(album){
     		            var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'>    </a>"; // <img src='" + album[albumIndex].url + "'>
     		            htmlString += "<div class='col-md-3' style='background-image:url(\"" + album[albumIndex].url + "\");background-size:cover;background-repeat:no-repeat;'>" + imgText + "</div>";
     		            */
-    		            var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'><img src='" + album[albumIndex].url + "'></a>";
-    		            htmlString += "<div class='col-md-3'>" + imgText + "</div>";
+    		            var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'><img class='img-responsive' src='" + album[albumIndex].url + "'></a>";
+    		            htmlString += "<div class='col-lg-3 col-md-4 col-sm-6 col-xs-12'>" + imgText + "</div>";
     		            albumIndex += 1;
     	            };
     	        };
