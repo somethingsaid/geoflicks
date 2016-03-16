@@ -6,12 +6,19 @@ console.log("6 months ago: " + moment().subtract(6, "months").format('YYYY-MM-DD
 var inputLocation = "";
 var photoAlbum = [];
 var flickrPage = 1;
-var accuracy = 11; //default accuracy.  random search will set this to about 9 for more results
-var radius = 10; //default radius.  random search will expand this to 20 for more results
+var accuracy = 11; //default accuracy.  random search will lower accuracy
+var radius = 10; //default radius.  random search will expand search radius
 var geoCoordinates = [];
 var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France", "Halstatt, Austria", "Sucre, Bolivia", "Bhutan", "Otaru, Hokkaido"];
 
 // Functions
+function randCoordinates() {
+    randLat = Math.floor(Math.random() * (66.6 - (-33.3) + 1.0000)) + (-66.6); // +- world's pop distr. in 2000 by lat
+    randLng = Math.floor(Math.random() * (145.3 - (-120.6) + 1.0000)) + (-120.6); // +- world's pop distr. in 2000 by lng
+    geoCoordinates = [randLat, randLng];
+    console.log("randomized location: " + geoCoordinates);
+}
+
 function showPhoto(album){
 	var albumIndex = 0;
 	var htmlString = "";
@@ -107,6 +114,7 @@ function getGeocode(location){
     .done(function(result){
     	console.log(result);
     	if (result.results.length > 0){
+            geoCoordinates = []; // re-setting coordinates
     	    geoCoordinates.push(result.results[0].geometry.location.lat);
     	    geoCoordinates.push(result.results[0].geometry.location.lng);
     	    console.log(location + ": " + geoCoordinates);
@@ -135,7 +143,6 @@ $("#location-getter").submit(function(event){
 	console.log("user entered: " + inputLocation);
     accuracy = 11;
     radius = 10;
-    geoCoordinates = []; // re-setting coordinates on new search
 	getGeocode(inputLocation);
     $("#next-page").hide();
     });
@@ -154,21 +161,24 @@ $("#next-page").click(function(){
 
 // Clicking random
 $("#lucky").click(function(){
-    // Need to create a while loop here - if flickr returns nothing, keep randomizing
-    randLat = Math.floor(Math.random() * (66.6666 - (-33.3333) + 1.0000)) + (-66.6666); // +- world's pop distr. in 2000 by lat
-    randLng = Math.floor(Math.random() * (145.3333 - (-120.6666) + 1.0000)) + (-120.6666); // +- world's pop distr. in 2000 by lng
-    geoCoordinates = [randLat, randLng];
-    //inputLocation = randList[Math.floor(Math.random() * randList.length)];
     $("#album").empty();
     $(".fail").hide();
     $(".success").hide();
     $(".loading").show();
-    console.log("randomized location: " + geoCoordinates);
-    accuracy = 9;
-    radius = 20;
-    //getGeocode(inputLocation);
-    getPhoto(geoCoordinates);
     $("#next-page").hide();
+    accuracy = 8;
+    radius = 30;
+    // Need to create a while loop here - if flickr returns nothing, keep randomizing. but a simple while here will endlessly loop
+    // due to time take for ajax call to return
+    //randCoordinates();
+    //getPhoto(geoCoordinates);
+
+    /* Fake randomization:
+
+    */
+    inputLocation = randList[Math.floor(Math.random() * (randList.length))];
+    console.log("Random location is: " + inputLocation);
+    getGeocode(inputLocation);
 });
 
 // Menu toggle
