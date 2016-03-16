@@ -6,6 +6,9 @@ console.log("6 months ago: " + moment().subtract(6, "months").format('YYYY-MM-DD
 var inputLocation = "";
 var photoAlbum = [];
 var flickrPage = 1;
+var accuracy = 11; //default accuracy.  random search will set this to about 9 for more results
+var radius = 10; //default radius.  random search will expand this to 20 for more results
+var geoCoordinates = [];
 var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France", "Halstatt, Austria", "Sucre, Bolivia", "Bhutan", "Otaru, Hokkaido"];
 
 // Functions
@@ -50,10 +53,10 @@ function getPhoto(coord){
 		/* optional parameters: */
 		content_type: 1, // 1 for photos only
 		sort: "interestingness_desc", //can also be interestingness_desc, time based
-		accuracy: 11, // range [1: 16] where 1 is world, 16 is street, 11 is around city
+		accuracy: accuracy, // range [1: 16] where 1 is world, 16 is street, 11 is around city
 		min_taken_date: moment().subtract(12, "months").format('YYYY-MM-DD 00:00:00'),
 		max_upload_date: moment().format('YYYY-MM-DD 00:00:00'),
-		radius: 10, // range (0: 32] km
+		radius: radius, // range (0: 32] km
 		radius_units: "km",
 		per_page: 16, // defaults to 100, max 500 per page
 		page: flickrPage,
@@ -104,7 +107,6 @@ function getGeocode(location){
     .done(function(result){
     	console.log(result);
     	if (result.results.length > 0){
-    	    var geoCoordinates = [];
     	    geoCoordinates.push(result.results[0].geometry.location.lat);
     	    geoCoordinates.push(result.results[0].geometry.location.lng);
     	    console.log(location + ": " + geoCoordinates);
@@ -131,6 +133,9 @@ $("#location-getter").submit(function(event){
     flickrPage = 1;
 	inputLocation = $(this).find("input[name='location']").val();
 	console.log("user entered: " + inputLocation);
+    accuracy = 11;
+    radius = 10;
+    geoCoordinates = []; // re-setting coordinates on new search
 	getGeocode(inputLocation);
     $("#next-page").hide();
     });
@@ -144,18 +149,25 @@ $("#next-page").click(function(){
     $(".fail").hide();
     $(".success").hide();
     $(".loading").show();
-    getGeocode(inputLocation);
+    getPhoto(geoCoordinates);
 });
 
 // Clicking random
 $("#lucky").click(function(){
-    inputLocation = randList[Math.floor(Math.random() * randList.length)];
+    // Need to create a while loop here - if flickr returns nothing, keep randomizing
+    randLat = Math.floor(Math.random() * (66.6666 - (-33.3333) + 1.0000)) + (-66.6666); // +- world's pop distr. in 2000 by lat
+    randLng = Math.floor(Math.random() * (145.3333 - (-120.6666) + 1.0000)) + (-120.6666); // +- world's pop distr. in 2000 by lng
+    geoCoordinates = [randLat, randLng];
+    //inputLocation = randList[Math.floor(Math.random() * randList.length)];
     $("#album").empty();
     $(".fail").hide();
     $(".success").hide();
     $(".loading").show();
-    console.log("randomized location: " + inputLocation);
-    getGeocode(inputLocation);
+    console.log("randomized location: " + geoCoordinates);
+    accuracy = 9;
+    radius = 20;
+    //getGeocode(inputLocation);
+    getPhoto(geoCoordinates);
     $("#next-page").hide();
 });
 
