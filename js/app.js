@@ -6,6 +6,7 @@ console.log("6 months ago: " + moment().subtract(6, "months").format('YYYY-MM-DD
 var inputLocation = "";
 var photoAlbum = [];
 var flickrPage = 1;
+var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France", "Halstatt, Austria", "Sucre, Bolivia", "Bhutan", "Otaru, Hokkaido"];
 
 // Functions
 function showPhoto(album){
@@ -48,8 +49,8 @@ function getPhoto(coord){
 		lon : coord[1],
 		/* optional parameters: */
 		content_type: 1, // 1 for photos only
-		sort: "relevance", //can also be interestingness_desc, time based
-		accuracy: 10, // range [1: 16] where 1 is world, 16 is street, 11 is around city
+		sort: "interestingness_desc", //can also be interestingness_desc, time based
+		accuracy: 11, // range [1: 16] where 1 is world, 16 is street, 11 is around city
 		min_taken_date: moment().subtract(12, "months").format('YYYY-MM-DD 00:00:00'),
 		max_upload_date: moment().format('YYYY-MM-DD 00:00:00'),
 		radius: 10, // range (0: 32] km
@@ -125,25 +126,43 @@ $("#location-getter").submit(function(event){
 	$("#album").empty();
 	$(".fail").hide();
 	$(".success").hide();
-	$(".loading").show().css("text-align", "center");
-	// if submitting on same criteria, show new results
-	if($(this).find("input[name='location']").val() == inputLocation){
-		flickrPage += 1;
-	}
-	else {
-		flickrPage = 1;
-	}
+	$(".loading").show();
+	// always show first page results when clicking submit
+    flickrPage = 1;
 	inputLocation = $(this).find("input[name='location']").val();
 	console.log("user entered: " + inputLocation);
 	getGeocode(inputLocation);
+    $("#next-page").hide();
     });
+
+
+// Clicking show-more
+$("#next-page").click(function(){
+    flickrPage += 1;
+    console.log("show next batch of results for same location: " + inputLocation);
+    $("#album").empty();
+    $(".fail").hide();
+    $(".success").hide();
+    $(".loading").show();
+    getGeocode(inputLocation);
+});
+
+// Clicking random
+$("#lucky").click(function(){
+    inputLocation = randList[Math.floor(Math.random() * randList.length)];
+    $("#album").empty();
+    $(".fail").hide();
+    $(".success").hide();
+    $(".loading").show();
+    console.log("randomized location: " + inputLocation);
+    getGeocode(inputLocation);
+    $("#next-page").hide();
+});
 
 // Menu toggle
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-    $(".loading").hide();
-    $(".success").hide();    
+    $("#wrapper").toggleClass("toggled"); 
 });
 
 });

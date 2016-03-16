@@ -25,6 +25,7 @@ html, .row {
     font-size: 2rem;
     color: #ECCF05;
     display: none;
+    text-align: center;
 }
 
 .success {
@@ -32,11 +33,13 @@ html, .row {
 	font-size: 2rem;
 	color: #3cba54;
 	display: none;
+    text-align: center;
 }
 
 .fail {
 	color: #ffffff;
 	display: none;
+    text-align: center;
 }
 
 #next-page {
