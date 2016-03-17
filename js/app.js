@@ -170,12 +170,14 @@ $("#lucky").click(function(){
     radius = 30;
     // Need to create a while loop here - if flickr returns nothing, keep randomizing. but a simple while here will endlessly loop
     // due to time take for ajax call to return
-    //randCoordinates();
-    //getPhoto(geoCoordinates);
-
-    /* Fake randomization:
-
+    /*
+    photoAlbum = [];
+    while (photoAlbum.length == 0){
+        randCoordinates();
+        getPhoto(geoCoordinates).done(function(){console.log("random album length: " + photoAlbum.length)});
+    }
     */
+    // Fake randomization:
     inputLocation = randList[Math.floor(Math.random() * (randList.length))];
     console.log("Random location is: " + inputLocation);
     getGeocode(inputLocation);
