@@ -18,6 +18,10 @@ html, .row {
 	width: 20rem;
 }
 
+#map {
+    height: 20rem;
+}
+
 
 /* Spinner declaration */
 .loading {

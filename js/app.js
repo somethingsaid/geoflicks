@@ -10,14 +10,19 @@ var accuracy = 11; //default accuracy.  random search will lower accuracy
 var radius = 10; //default radius.  random search will expand search radius
 var geoCoordinates = [];
 var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France", "Halstatt, Austria", "Sucre, Bolivia", "Bhutan", "Otaru, Hokkaido"];
+var googleApiKey = "AIzaSyBbLnfemMfCf7sJ83aiYAzb8-HR7nJAoOE";
+var flickrApiKey = "05b7506e3fd86ae08a540a59e4e7f40d";
+var xhr = new XMLHttpRequest();
 
 // Functions
+/*  Can't get while loop working to keep randomizing if album is empty
 function randCoordinates() {
     randLat = Math.floor(Math.random() * (66.6 - (-33.3) + 1.0000)) + (-66.6); // +- world's pop distr. in 2000 by lat
     randLng = Math.floor(Math.random() * (145.3 - (-120.6) + 1.0000)) + (-120.6); // +- world's pop distr. in 2000 by lng
     geoCoordinates = [randLat, randLng];
     console.log("randomized location: " + geoCoordinates);
 }
+*/
 
 function showPhoto(album){
 	var albumIndex = 0;
@@ -53,7 +58,7 @@ function getPhoto(coord){
 	var parameters = {
 		format: "json",
 		method: "flickr.photos.search",
-		api_key: "05b7506e3fd86ae08a540a59e4e7f40d",
+		api_key: flickrApiKey,
 		nojsoncallback: 1,  // return raw JSON instead of JSONP
         lat : coord[0],
 		lon : coord[1],
@@ -102,7 +107,7 @@ function getPhoto(coord){
 
 function getGeocode(location){
 	var parameters = {
-		key: "AIzaSyBbLnfemMfCf7sJ83aiYAzb8-HR7nJAoOE",
+		key: googleApiKey,
 		address: location
 	};
 
@@ -119,6 +124,7 @@ function getGeocode(location){
     	    geoCoordinates.push(result.results[0].geometry.location.lng);
     	    console.log(location + ": " + geoCoordinates);
     	    getPhoto(geoCoordinates);
+            initMap(geoCoordinates);
     	}
     	else {
     		console.log("no results");
@@ -129,8 +135,11 @@ function getGeocode(location){
     });
 }
 
+/*************************************
+// Event listeners and actions
+**************************************/
 
-// Event listeners
+// Get user's location input
 $("#location-getter").submit(function(event){
 	event.preventDefault();
 	$("#album").empty();
@@ -148,7 +157,7 @@ $("#location-getter").submit(function(event){
     });
 
 
-// Clicking show-more
+// User wants to see more results for same location
 $("#next-page").click(function(){
     flickrPage += 1;
     console.log("show next batch of results for same location: " + inputLocation);
@@ -159,7 +168,7 @@ $("#next-page").click(function(){
     getPhoto(geoCoordinates);
 });
 
-// Clicking random
+// Show photos from random pick of preset list of locations
 $("#lucky").click(function(){
     $("#album").empty();
     $(".fail").hide();
@@ -183,7 +192,7 @@ $("#lucky").click(function(){
     getGeocode(inputLocation);
 });
 
-// Menu toggle
+// Menu toggle show/hide sidebar
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled"); 
