@@ -9,7 +9,6 @@ var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France
 var googleApiKey = "AIzaSyBbLnfemMfCf7sJ83aiYAzb8-HR7nJAoOE";
 var flickrApiKey = "05b7506e3fd86ae08a540a59e4e7f40d";
 var map;
-var firstClick = true;
 var mapShown = false;
 // Functions
 function initMap() {
@@ -242,13 +241,10 @@ $(document).ready(function(){
     $("#map-toggle").click(function(e) {
         e.preventDefault();
         $("#map").toggleClass("toggled");
-        if (firstClick == true) {
-            initMap();
-            firstClick = false;
-        }
         if (mapShown == false) {
             $("#map-toggle").text('Click anywhere on map');
             mapShown = true;
+            initMap();
         }
         else {
             $("#map-toggle").text('Search via Google Maps');
