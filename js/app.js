@@ -4,7 +4,7 @@ var photoAlbum = [];
 var flickrPage = 1;
 var accuracy = 11; //default accuracy.  random search will lower accuracy
 var radius = 10; //default radius.  random search will expand search radius
-var geoCoordinates = [];
+var geoCoordinates = [51.508742, -0.120850];
 var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France", "Halstatt, Austria", "Sucre, Bolivia", "Bhutan", "Otaru, Hokkaido"];
 var googleApiKey = "AIzaSyBbLnfemMfCf7sJ83aiYAzb8-HR7nJAoOE";
 var flickrApiKey = "05b7506e3fd86ae08a540a59e4e7f40d";
@@ -12,8 +12,8 @@ var flickrApiKey = "05b7506e3fd86ae08a540a59e4e7f40d";
 // Functions
 function initMap() {
             var mapProp = {
-                center: new google.maps.LatLng(51.508742, -0.120850),
-                zoom: 5,
+                center: new google.maps.LatLng(geoCoordinates[0], geoCoordinates[1]),
+                zoom: 11,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById('map'), mapProp);
@@ -130,7 +130,7 @@ function getGeocode(location){
             geoCoordinates.push(result.results[0].geometry.location.lng);
             console.log(location + ": " + geoCoordinates);
             getPhoto(geoCoordinates);
-            initMap(geoCoordinates);
+            initMap();
         }
         else {
             console.log("no results");
@@ -166,8 +166,8 @@ $("#location-getter").submit(function(event){
     flickrPage = 1;
 	inputLocation = $(this).find("input[name='location']").val();
 	console.log("user entered: " + inputLocation);
-    accuracy = 11;
-    radius = 10;
+    accuracy = 16;
+    radius = 5;
 	getGeocode(inputLocation);
     $("#next-page").hide();
     });
