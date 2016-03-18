@@ -199,13 +199,18 @@ $(document).ready(function(){
 
     // User wants to see more results for same location
     $("#next-page").click(function(){
-        flickrPage += 1;
-        console.log("show next batch of results for same location: " + inputLocation);
-        $("#album").empty();
-        $(".fail").hide();
-        $(".success").hide();
-        $(".loading").show();
-        getPhoto(geoCoordinates);
+        if ($("#next-page").hasClass("disabled")) {
+            ;
+        }
+        else{
+            flickrPage += 1;
+            console.log("show next batch of results for same location: " + inputLocation);
+            $("#album").empty();
+            $(".fail").hide();
+            $(".success").hide();
+            $(".loading").show();
+            getPhoto(geoCoordinates);
+        }
     });
 
     // Show photos from random pick of preset list of locations
