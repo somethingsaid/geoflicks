@@ -8,7 +8,7 @@ var geoCoordinates = [51.508742, -0.120850];
 var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France", "Halstatt, Austria", "Sucre, Bolivia", "Bhutan", "Otaru, Hokkaido"];
 var googleApiKey = "AIzaSyBbLnfemMfCf7sJ83aiYAzb8-HR7nJAoOE";
 var flickrApiKey = "05b7506e3fd86ae08a540a59e4e7f40d";
-
+var map;
 // Functions
 function initMap() {
     var mapProp = {
@@ -16,12 +16,34 @@ function initMap() {
         zoom: 11,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById('map'), mapProp);
-
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(geoCoordinates[0], geoCoordinates[1]),
-        map: map
+    map = new google.maps.Map(document.getElementById('map'), mapProp);
+    
+    // Place new marker on click
+    google.maps.event.addListener(map, 'click', function(event) {
+        placeMarker(event.latLng);
+        geoCoordinates = [Number(event.latLng.lat()), Number(event.latLng.lng())];
+        console.log("New click coordinates: " + geoCoordinates);
+        // Kick off photosearch on click:
+        $("#album").empty();
+        $(".fail").hide();
+        $(".success").hide();
+        $(".loading").show();
+        $("#next-page").hide();
+        getPhoto(geoCoordinates);
     });
+}
+
+function placeMarker(location) {
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+    });
+    
+    var infowindow = new google.maps.InfoWindow({
+        content: 'Lat: ' + location.lat() + '<br>Lng: ' + location.lng()
+    });
+    
+    infowindow.open(map, marker);
 }
 
 function loadScript() {
@@ -151,8 +173,6 @@ function getGeocode(location){
 $(document).ready(function(){
     console.log("Current date: " + moment().format('YYYY-MM-DD 00:00:00'));
     console.log("6 months ago: " + moment().subtract(6, "months").format('YYYY-MM-DD 00:00:00'));
-
-
     /*************************************
     // Event listeners and actions
     **************************************/
