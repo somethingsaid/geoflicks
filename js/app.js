@@ -209,6 +209,7 @@ $(document).ready(function(){
             $(".fail").hide();
             $(".success").hide();
             $(".loading").show();
+            $("#next-page").addClass("disabled");
             getPhoto(geoCoordinates);
         }
     });
