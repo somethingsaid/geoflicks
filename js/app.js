@@ -29,7 +29,7 @@ function initMap() {
         $(".fail").hide();
         $(".success").hide();
         $(".loading").show();
-        $("#next-page").hide();
+        $("#next-page").addClass("disabled");
         getPhoto(geoCoordinates);
     });
 }
@@ -82,7 +82,7 @@ function showPhoto(album) {
     };
     $("#album").append(htmlString);
     $(".loading").hide();
-    $("#next-page").show();
+    $("#next-page").removeClass("disabled");
     $(".success").show().css("color", "#3cba54");
 }
 
@@ -174,6 +174,7 @@ function getGeocode(location){
 $(document).ready(function(){
     console.log("Current date: " + moment().format('YYYY-MM-DD 00:00:00'));
     console.log("6 months ago: " + moment().subtract(6, "months").format('YYYY-MM-DD 00:00:00'));
+    $("#next-page").addClass("disabled");
     /*************************************
     // Event listeners and actions
     **************************************/
@@ -192,7 +193,7 @@ $(document).ready(function(){
         accuracy = 16;
         radius = 5;
         getGeocode(inputLocation);
-        $("#next-page").hide();
+        $("#next-page").addClass("disabled");
     });
 
 
@@ -213,7 +214,7 @@ $(document).ready(function(){
         $(".fail").hide();
         $(".success").hide();
         $(".loading").show();
-        $("#next-page").hide();
+        $("#next-page").addClass("disabled");
         accuracy = 8;
         radius = 30;
         // Need to create a while loop here - if flickr returns nothing, keep randomizing. but a simple while here will endlessly loop
