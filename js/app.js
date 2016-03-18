@@ -156,9 +156,9 @@ function getGeocode(location){
             geoCoordinates = []; // re-setting coordinates
             geoCoordinates.push(result.results[0].geometry.location.lat);
             geoCoordinates.push(result.results[0].geometry.location.lng);
+            initMap();
             console.log(location + ": " + geoCoordinates);
             getPhoto(geoCoordinates);
-            initMap();
         }
         else {
             console.log("no results");
