@@ -9,6 +9,8 @@ var randList = ["Labuan Bajo, Komodo", "New York City, New York", "Paris, France
 var googleApiKey = "AIzaSyBbLnfemMfCf7sJ83aiYAzb8-HR7nJAoOE";
 var flickrApiKey = "05b7506e3fd86ae08a540a59e4e7f40d";
 var map;
+var firstClick = true;
+var mapShown = false;
 // Functions
 function initMap() {
     var mapProp = {
@@ -176,8 +178,6 @@ $(document).ready(function(){
     /*************************************
     // Event listeners and actions
     **************************************/
-    // Initialize map
-    loadScript();
 
     // Get user's location input
     $("#location-getter").submit(function(event){
@@ -241,6 +241,19 @@ $(document).ready(function(){
     // Map toggle
     $("#map-toggle").click(function(e) {
         e.preventDefault();
+        if(firstClick == true){
+            // Initialize map
+            loadScript();
+            firstClick = false;  // so that we're not including googleAPI multi times
+        }
         $("#map").toggleClass("toggled");
+        if (mapShown == false) {
+            $("#map-toggle").text('Click anywhere on map');
+            mapShown = true;
+        }
+        else {
+            $("#map-toggle").text('Search via Google Maps');
+            mapShown = false;
+        }
     })
 });
