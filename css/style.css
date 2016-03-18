@@ -19,6 +19,10 @@ html, .row {
 }
 
 #map {
+    height: 0rem;
+}
+
+#map.toggled {
     height: 20rem;
 }
 
@@ -70,6 +74,8 @@ b {
 #wrapper.toggled {
     padding-left: 0;
 }
+
+
 
 #sidebar-wrapper {
     z-index: 999;

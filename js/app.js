@@ -40,7 +40,7 @@ function placeMarker(location) {
     });
     
     var infowindow = new google.maps.InfoWindow({
-        content: 'Lat: ' + location.lat() + '<br>Lng: ' + location.lng()
+        content: 'Lat: ' + Number(location.lat()).toFixed(4) + '<br>Lng: ' + Number(location.lng()).toFixed(4)
     });
     
     infowindow.open(map, marker);
@@ -238,4 +238,9 @@ $(document).ready(function(){
         $("#wrapper").toggleClass("toggled"); 
     });
 
+    // Map toggle
+    $("#map-toggle").click(function(e) {
+        e.preventDefault();
+        $("#map").toggleClass("toggled");
+    })
 });
