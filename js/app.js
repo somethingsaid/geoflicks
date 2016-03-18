@@ -178,7 +178,7 @@ $(document).ready(function(){
     /*************************************
     // Event listeners and actions
     **************************************/
-
+    loadScript();
     // Get user's location input
     $("#location-getter").submit(function(event){
         event.preventDefault();
@@ -241,12 +241,11 @@ $(document).ready(function(){
     // Map toggle
     $("#map-toggle").click(function(e) {
         e.preventDefault();
-        if(firstClick == true){
-            // Initialize map
-            loadScript();
-            firstClick = false;  // so that we're not including googleAPI multi times
-        }
         $("#map").toggleClass("toggled");
+        if (firstClick == true) {
+            initMap();
+            firstClick = false;
+        }
         if (mapShown == false) {
             $("#map-toggle").text('Click anywhere on map');
             mapShown = true;
