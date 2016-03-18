@@ -161,6 +161,9 @@ function getGeocode(location){
         }
         else {
             console.log("no results");
+            $(".loading").hide();
+            $(".success").css("color", "red").show();
+            $(".fail").show();
         }
     })
     .fail(function(jqXHR, error){
