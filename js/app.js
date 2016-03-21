@@ -53,15 +53,6 @@ function loadScript() {
     document.body.appendChild(script);
 }
 
-/*  Can't get while loop working to keep randomizing if album is empty
-function randCoordinates() {
-    randLat = Math.floor(Math.random() * (66.6 - (-33.3) + 1.0000)) + (-66.6); // +- world's pop distr. in 2000 by lat
-    randLng = Math.floor(Math.random() * (145.3 - (-120.6) + 1.0000)) + (-120.6); // +- world's pop distr. in 2000 by lng
-    geoCoordinates = [randLat, randLng];
-    console.log("randomized location: " + geoCoordinates);
-}
-*/
-
 function showPhoto(album) {
     var albumIndex = 0;
     var htmlString = "";
@@ -226,15 +217,7 @@ $(document).ready(function(){
         $("#next-page").addClass("disabled");
         accuracy = 8;
         radius = 30;
-        // Need to create a while loop here - if flickr returns nothing, keep randomizing. but a simple while here will endlessly loop
-        // due to time take for ajax call to return
-        /*
-        photoAlbum = [];
-        while (photoAlbum.length == 0){
-            randCoordinates();
-            getPhoto(geoCoordinates).done(function(){console.log("random album length: " + photoAlbum.length)});
-        }
-        */
+
         // Fake randomization:
         inputLocation = randList[Math.floor(Math.random() * (randList.length))];
         console.log("Random location is: " + inputLocation);
