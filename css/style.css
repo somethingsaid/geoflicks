@@ -23,7 +23,7 @@ html, .row {
 }
 
 #map.toggled {
-    height: 20rem;
+    height: 40rem;
 }
 
 
@@ -76,7 +76,7 @@ b {
 
 #sidebar-wrapper {
     z-index: 999;
-    padding-top: 100px;
+    padding-top: 75px;
     position: fixed;
     left: 250px;
     width: 250px;
