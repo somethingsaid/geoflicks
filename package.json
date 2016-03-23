@@ -1,0 +1,36 @@
+{
+  "name": "geoflicks",
+  "version": "1.0.0",
+  "description": "Search through Flickr by location input",
+  "main": "js/app.js",
+  "scripts": {
+    "//": "Standard declarations",
+    "mkdir": "mkdir -p build",
+    "clean": "rm -rf build",
+    "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css & npm run build:js",
+    "watch": "npm run watch:html & npm run watch:css & npm run watch:js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/somethingsaid/geoflicks.git"
+  },
+  "keywords": [
+    "googlemapsAPI",
+    "googlegeocodeAPI",
+    "flickr"
+  ],
+  "author": "BK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/somethingsaid/geoflicks/issues"
+  },
+  "homepage": "https://github.com/somethingsaid/geoflicks#readme",
+  "dependencies": {
+    "jquery": "^2.2.2",
+    "normalize.css": "^4.0.0"
+  },
+  "devDependencies": {
+    "less": "^2.6.1",
+    "less-plugin-clean-css": "^1.5.1"
+  }
+}
