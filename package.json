@@ -4,11 +4,20 @@
   "description": "Search through Flickr by location input",
   "main": "js/app.js",
   "scripts": {
-    "//": "Standard declarations",
+    "//": "JS",
     "mkdir": "mkdir -p build",
     "clean": "rm -rf build",
     "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css & npm run build:js",
-    "watch": "npm run watch:html & npm run watch:css & npm run watch:js"
+    "watch": "npm run watch:html & npm run watch:css & npm run watch:js",
+    "build:html": "npm run clean:html && cp index.html build/",
+    "watch:html": "npm run build:html && chokidar index.html -c 'npm run build:html'",
+    "clean:html": "rm -f build/index.html",
+    "build:css": "npm run clean:css && lessc --source-map css/style.less build/style.css",
+    "watch:css": "npm run build:css && chokidar css/style.less -c 'npm run build:css'",
+    "clean:css": "rm -f build/style.css",
+    "build:js": "npm run clean:js && cp js/app.js build/",
+    "watch:js": "npm run build:js && chokidar js/app.js -c 'npm run build:js'",
+    "clean:js": "rm -f build/app.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +39,7 @@
     "normalize.css": "^4.0.0"
   },
   "devDependencies": {
+    "chokidar-cli": "^1.2.0",
     "less": "^2.6.1",
     "less-plugin-clean-css": "^1.5.1"
   }
