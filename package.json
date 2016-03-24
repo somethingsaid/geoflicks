@@ -15,9 +15,15 @@
     "build:css": "npm run clean:css && lessc --source-map css/style.less build/style.css",
     "watch:css": "npm run build:css && chokidar css/style.less -c 'npm run build:css'",
     "clean:css": "rm -f build/style.css",
-    "build:js": "npm run clean:js && cp js/app.js build/",
-    "watch:js": "npm run build:js && chokidar js/app.js -c 'npm run build:js'",
-    "clean:js": "rm -f build/app.js"
+    "build:js": "npm run build:js:unminified && npm run build:js:minified",
+    "watch:js": "npm run watch:js:unminified & npm run watch:js:minified",
+    "clean:js": "npm run clean:js:unminified && npm run clean:js:minified",
+    "build:js:unminified": "npm run clean:js:unminified && webpack",
+    "watch:js:unminified": "npm run build:js:unminified && webpack --watch",
+    "clean:js:unminified": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
+    "build:js:minified": "npm run clean:js:minified && webpack --minify",
+    "watch:js:minified": "npm run build:js:minified && webpack --watch --minify",
+    "clean:js:minified": "rm -f build/$npm_package_name.$npm_package_version.min.js build/$npm_package_name.$npm_package_version.min.js.map"
   },
   "repository": {
     "type": "git",
@@ -34,11 +40,12 @@
     "url": "https://github.com/somethingsaid/geoflicks/issues"
   },
   "homepage": "https://github.com/somethingsaid/geoflicks#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
     "less": "^2.6.1",
-    "less-plugin-clean-css": "^1.5.1"
+    "less-plugin-clean-css": "^1.5.1",
+    "uglify-js": "^2.6.2",
+    "webpack": "^1.12.14"
   }
 }
