@@ -35,8 +35,6 @@
   },
   "homepage": "https://github.com/somethingsaid/geoflicks#readme",
   "dependencies": {
-    "jquery": "^2.2.2",
-    "normalize.css": "^4.0.0"
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
