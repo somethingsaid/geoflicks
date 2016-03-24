@@ -123,7 +123,6 @@ function getPhoto(coord) {
         }
         else{
             $(".loading").hide();
-            $(".success").css("color", "red").show();
             $(".fail").show();
         }
     })
@@ -153,7 +152,6 @@ function getGeocode(location){
         else {
             console.log("no results");
             $(".loading").hide();
-            $(".success").css("color", "red").show();
             $(".fail").show();
         }
     })

@@ -27,10 +27,13 @@
             <form class="search-form" id="location-getter">
                 <div class="user-input">
                     <input type="text" name="location" placeholder="Enter a location. e.g. 'Okinawa, Japan'" required>
+                    <span class="loading fa fa-circle-o-notch fa-spin fa-3x">
+                    </span>
+                    <span class="success fa fa-circle-o-notch fa-3x">
+                    </span>
+                    <span class="fail fa fa-circle-o-notch fa-3x">
+                    </span>
                 </div>
-                <p class="loading"><i class="fa fa-circle-o-notch fa-spin"></i></p>
-                <p class="success"><i class="fa fa-circle-o-notch"></i></p>
-                <p class="fail">No results</p>
             </form>
             <br>
             <button type="submit" class="btn btn-primary btn-block" style="outline: none" id="next-page">Show more</button>

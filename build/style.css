@@ -79,6 +79,26 @@ em {
   line-height: 80px;
   font-size: 30px;
   outline: none;
+  display: inline-block;
+}
+.navigation-search .user-input p {
+  text-align: center;
+  float: right;
+}
+.navigation-search .user-input .fa {
+  display: none;
+  position: absolute;
+  top: 97px;
+  right: 180px;
+}
+.navigation-search .user-input .success {
+  color: #4CAF50;
+}
+.navigation-search .user-input .loading {
+  color: #424242;
+}
+.navigation-search .user-input .fail {
+  color: #F44336;
 }
 .navigation-search.toggled {
   display: block;
