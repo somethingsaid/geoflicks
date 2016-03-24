@@ -18,6 +18,7 @@ html {
 html,
 body {
   height: 100%;
+  background-color: #424242;
 }
 /* Navigation Declarations */
 em {
@@ -60,12 +61,30 @@ em {
   background-color: #212121;
   color: #ffffff;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  display: none;
 }
 .navigation-search #map {
   height: 400px;
   width: 90%;
   margin: auto;
   border-radius: 6px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.navigation-search .user-input {
+  width: 80%;
+  margin: auto;
+}
+.navigation-search .user-input input {
+  width: 100%;
+  line-height: 80px;
+  font-size: 30px;
+  outline: none;
+}
+.navigation-search.toggled {
+  display: block;
+}
+/* Gallery section declarations */
+.gallery {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 /*# sourceMappingURL=style.css.map */

@@ -224,24 +224,11 @@ $(document).ready(function(){
         getGeocode(inputLocation);
     });
 
-    // Menu toggle show/hide sidebar
+    // Search option toggle
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
-        $("#wrapper").toggleClass("toggled"); 
+        $(".navigation-search").toggleClass("toggled");
+        initMap(); 
     });
-
-    // Map toggle
-    $("#map-toggle").click(function(e) {
-        e.preventDefault();
-        $("#map").toggleClass("toggled");
-        if (mapShown == false) {
-            $("#map-toggle").text('Click anywhere on map');
-            mapShown = true;
-            initMap();
-        }
-        else {
-            $("#map-toggle").text('Search via Google Maps');
-            mapShown = false;
-        }
-    })
+//EOF
 });

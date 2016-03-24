@@ -18,18 +18,16 @@
                     </span>
                 </div>
                 <div class="search-button">
-                    <span>
+                    <span>Toggle search options
                         <a href="#menu-toggle" class="menu-toggle" id="menu-toggle"><i class="fa fa-search fa-4x"></i></a>
                     </span>
                 </div>
         </div>
         <div class="navigation-search">
-            <form role="form" id="location-getter">
-                <div class="form-group">
-                    <label for="location">Location:</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder='e.g., "New York City", "Maldives"' required>
+            <form class="search-form" id="location-getter">
+                <div class="user-input">
+                    <input type="text" name="location" placeholder="Enter a location. e.g. 'Okinawa, Japan'" required>
                 </div>
-                <p><button type="submit" class="btn btn-success btn-block" style="outline: none">Submit</button></p>
                 <p class="loading"><i class="fa fa-circle-o-notch fa-spin"></i></p>
                 <p class="success"><i class="fa fa-circle-o-notch"></i></p>
                 <p class="fail">No results</p>
@@ -37,7 +35,6 @@
             <br>
             <button type="submit" class="btn btn-primary btn-block" style="outline: none" id="next-page">Show more</button>
             <button id="lucky" type="submit" class="btn btn-primary btn-block" style="outline: none">Random search</button>
-            <a href="#map-toggle" class="btn btn-primary btn-block" id="map-toggle" style="outline: none">Search via Google Maps</a>
             <!-- embed google map -->
             <div id="map">
             </div>
