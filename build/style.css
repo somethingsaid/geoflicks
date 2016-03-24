@@ -39,11 +39,8 @@ em {
 .navigation-title div span .fa-search {
   color: #E91E63;
 }
-.navigation-title div span .fa-search:hover {
-  color: #eb3170;
-}
 .navigation-title div span .fa-search:active {
-  color: #c1134e;
+  color: #ee4c83;
 }
 .navigation-title .title {
   float: left;
@@ -68,6 +65,7 @@ em {
   height: 400px;
   width: 90%;
   margin: auto;
+  color: #000000;
   border-radius: 6px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
@@ -105,6 +103,7 @@ em {
   display: inline-block;
   width: 50%;
   margin: auto;
+  padding-bottom: 15px;
 }
 .navigation-search .more-options button {
   background-color: #E91E63;
@@ -118,6 +117,9 @@ em {
   margin-right: 10px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
+.navigation-search .more-options button:active {
+  background-color: #ee4c83;
+}
 .navigation-search .more-options button.disabled {
   background-color: #4d081f;
   color: #424242;
@@ -126,6 +128,7 @@ em {
   display: inline-block;
   width: 50%;
   margin: auto;
+  padding-bottom: 15px;
   float: right;
 }
 .navigation-search .random button {
@@ -140,15 +143,25 @@ em {
   margin-right: 10px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
+.navigation-search .random button:active {
+  background-color: #ee4c83;
+}
 .navigation-search .random button {
   margin-left: 10px;
   margin-right: auto;
+}
+.navigation-search .random button:active {
+  background-color: #ee4c83;
 }
 .navigation-search.toggled {
   display: block;
 }
 /* Gallery section declarations */
 .gallery {
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  padding-top: 15px;
 }
+.gallery div {
+  padding: 5px;
+}
+/* Media queries for grid album layout on larger screens */
 /*# sourceMappingURL=style.css.map */
