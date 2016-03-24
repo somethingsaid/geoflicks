@@ -15,15 +15,9 @@
     "build:css": "npm run clean:css && lessc --source-map css/style.less build/style.css",
     "watch:css": "npm run build:css && chokidar css/style.less -c 'npm run build:css'",
     "clean:css": "rm -f build/style.css",
-    "build:js": "npm run build:js:unminified && npm run build:js:minified",
-    "watch:js": "npm run watch:js:unminified & npm run watch:js:minified",
-    "clean:js": "npm run clean:js:unminified && npm run clean:js:minified",
-    "build:js:unminified": "npm run clean:js:unminified && webpack",
-    "watch:js:unminified": "npm run build:js:unminified && webpack --watch",
-    "clean:js:unminified": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
-    "build:js:minified": "npm run clean:js:minified && webpack --minify",
-    "watch:js:minified": "npm run build:js:minified && webpack --watch --minify",
-    "clean:js:minified": "rm -f build/$npm_package_name.$npm_package_version.min.js build/$npm_package_name.$npm_package_version.min.js.map"
+    "build:js": "npm run clean:js && cp js/app.js build/",
+    "watch:js": "npm run build:js && chokidar js/app.js -c 'npm run build:js'",
+    "clean:js": "rm -rf build/app.js"
   },
   "repository": {
     "type": "git",

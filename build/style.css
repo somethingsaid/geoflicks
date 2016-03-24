@@ -1,5 +1,12 @@
 /* Variables */
-/* Setup border-box */
+/* Some mixins */
+.rounded_borders {
+  border-radius: 6px;
+}
+.shadow {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+/* Standard set-up */
 html {
   box-sizing: border-box;
 }
@@ -8,11 +15,15 @@ html {
 *:after {
   box-sizing: inherit;
 }
+html,
+body {
+  height: 100%;
+}
+/* Navigation Declarations */
 em {
   font-style: normal;
   color: #E91E63;
 }
-/* Navigation Declarations */
 .navigation-title div {
   color: #ffffff;
   margin: 0;
@@ -45,4 +56,16 @@ em {
   padding-right: 15px;
 }
 /* Search option declarations */
+.navigation-search {
+  background-color: #212121;
+  color: #ffffff;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.navigation-search #map {
+  height: 400px;
+  width: 90%;
+  margin: auto;
+  border-radius: 6px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
 /*# sourceMappingURL=style.css.map */
