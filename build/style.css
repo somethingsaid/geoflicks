@@ -1,0 +1,51 @@
+/* Variables */
+/* Setup border-box */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+em {
+  font-style: normal;
+  color: #E91E63;
+}
+/* Navigation Declarations */
+.navigation-title span {
+  height: 100%;
+}
+.navigation-title div {
+  color: #ffffff;
+  margin: 0;
+  width: 50%;
+  height: 80px;
+  padding-top: 5px;
+}
+.title {
+  float: left;
+  background-color: #000000;
+  padding-left: 15px;
+  font-size: 400%;
+}
+.search-button {
+  float: right;
+  background-color: #000000;
+  text-align: right;
+  padding-right: 15px;
+}
+.icon-background {
+  color: #212121;
+}
+.fa-search {
+  color: #E91E63;
+}
+.fa-search:hover {
+  color: #eb3170;
+}
+.fa-search:active {
+  color: #c1134e;
+}
+/* Search option declarations */
+/*# sourceMappingURL=style.css.map */
