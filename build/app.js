@@ -56,21 +56,10 @@ function loadScript() {
 function showPhoto(album) {
     var albumIndex = 0;
     var htmlString = "";
-    while(albumIndex < album.length) {
-        for(var row = 1; row < 5; row++) {
-            if(albumIndex < album.length) {
-                htmlString += "<div class='row'>";
-                for(var col = 1; col < 5; col++) {
-                    if(albumIndex < album.length) {
-                        var imgText = "<a target='_blank' href='" + album[albumIndex].flickrPage + "'><img class='img-thumbnail' src='" + album[albumIndex].url + "' width='280' height='190'></a>";
-                        htmlString += "<div class='col-lg-3 col-md-4 col-sm-6 col-xs-12'>" + imgText + "</div>";
-                        albumIndex += 1;
-                    };
-                };
-            };
-            htmlString += "</div>";
-        };
-    };
+    while (albumIndex < album.length) {
+        htmlString += "<div class='frame'><a target='_blank' href='" + album[albumIndex].flickrPage + "'><img class='img-thumbnail' src='" + album[albumIndex].url + "'></a></div>";
+        albumIndex += 1;
+    }
     $("#album").append(htmlString);
     $(".loading").hide();
     $("#next-page").removeClass("disabled");
@@ -95,7 +84,7 @@ function getPhoto(coord) {
         max_upload_date: moment().format('YYYY-MM-DD 00:00:00'),
         radius: radius, // range (0: 32] km
         radius_units: "km",
-        per_page: 16, // defaults to 100, max 500 per page
+        per_page: 15, // defaults to 100, max 500 per page
         page: flickrPage,
         extras: "url_c, url_m, url_z"
     };
