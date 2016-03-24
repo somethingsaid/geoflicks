@@ -19,6 +19,7 @@ html,
 body {
   height: 100%;
   background-color: #424242;
+  font-family: 'Roboto', 'sans serif';
 }
 /* Navigation Declarations */
 em {
@@ -99,6 +100,49 @@ em {
 }
 .navigation-search .user-input .fail {
   color: #F44336;
+}
+.navigation-search .more-options {
+  display: inline-block;
+  width: 50%;
+  margin: auto;
+}
+.navigation-search .more-options button {
+  background-color: #E91E63;
+  width: 180px;
+  height: 75px;
+  font-family: 'Roboto', 'sans serif', medium;
+  border: none;
+  color: #ffffff;
+  display: block;
+  margin-left: auto;
+  margin-right: 10px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.navigation-search .more-options button.disabled {
+  background-color: #4d081f;
+  color: #424242;
+}
+.navigation-search .random {
+  display: inline-block;
+  width: 50%;
+  margin: auto;
+  float: right;
+}
+.navigation-search .random button {
+  background-color: #E91E63;
+  width: 180px;
+  height: 75px;
+  font-family: 'Roboto', 'sans serif', medium;
+  border: none;
+  color: #ffffff;
+  display: block;
+  margin-left: auto;
+  margin-right: 10px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.navigation-search .random button {
+  margin-left: 10px;
+  margin-right: auto;
 }
 .navigation-search.toggled {
   display: block;
