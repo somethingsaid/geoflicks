@@ -1,4 +1,5 @@
 /* Variables */
+/* flickr url_z longest side is 640px */
 /* Some mixins */
 .rounded_borders {
   border-radius: 6px;
@@ -164,12 +165,26 @@ em {
   padding: 5px;
   margin: auto;
   width: 100%;
+  overflow: hidden;
+}
+.gallery div:first-child {
+  padding-bottom: 5px;
 }
 .gallery div img {
   display: block;
   margin-left: auto;
   margin-right: auto;
   border-radius: 6px;
+  max-width: 650px;
+  max-height: 650px;
+  min-width: 450px;
+  min-height: 300px;
+}
+.gallery div a {
+  margin: 0 auto;
+  display: block;
+  max-width: 650px;
+  max-height: 650px;
 }
 /* Media queries for grid album layout on larger screens */
 /*# sourceMappingURL=style.css.map */

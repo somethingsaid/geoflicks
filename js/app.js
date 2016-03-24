@@ -97,7 +97,7 @@ function getPhoto(coord) {
         radius_units: "km",
         per_page: 16, // defaults to 100, max 500 per page
         page: flickrPage,
-        extras: "url_t, url_s, url_m, url_z"
+        extras: "url_c, url_m, url_z"
     };
     
     $.ajax({
@@ -112,7 +112,7 @@ function getPhoto(coord) {
             // photo is an array of objects, feed index and matching object
             var photoDetails = {
                 title: photoObj.title,
-                url: photoObj.url_m,
+                url: photoObj.url_z,
                 flickrPage: "https://www.flickr.com/photos/" + photoObj.owner + "/" + photoObj.id
             }
             photoAlbum.push(photoDetails);
