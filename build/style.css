@@ -166,6 +166,7 @@ em {
   margin: auto;
   width: 100%;
   overflow: hidden;
+  vertical-align: top;
 }
 .gallery div:first-child {
   padding-bottom: 5px;
