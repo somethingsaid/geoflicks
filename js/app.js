@@ -49,7 +49,7 @@ function placeMarker(location) {
 
 function loadScript() {
     var script = document.createElement("script");
-    script.src = "http://maps.googleapis.com/maps/api/js?key=" + googleApiKey + "&callback=initMap";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=" + googleApiKey + "&callback=initMap";
     document.body.appendChild(script);
 }
 
